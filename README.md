@@ -43,7 +43,7 @@ https://drive.google.com/file/d/1cMagRKbX_cmw4N0xgTjgjzdJTVjYzw9s/view?usp=shari
 
 
 ## What I Learned
-This project focused heavily on test-driven-development and object-oriented-programming. I also my understanding of node.js, inquirer, jest, constructors, and object inheritance.
+This project focused heavily on test-driven-development and object-oriented-programming. I also honed my understanding of node.js, inquirer, jest, constructors, and object inheritance.
 
     
 

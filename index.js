@@ -1,4 +1,9 @@
 const inquirer = require('inquirer');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+const fs = require('fs');
+const generateHTML = require('./src/page-template');
 
 const employeeArr = [];
 let count = 0;
@@ -23,7 +28,7 @@ const launchApp = () => {
                 console.log("Please enter the next team member's data")
                 initialPrompt();
             } else {
-                // return writeHTML();
+                return writeHTML();
             }
         })
     }
@@ -167,7 +172,7 @@ const internPrompt = (data) => {
         .then((answer) => {
             const { name, id, email, role } = data;
             const { school } = answer;
-            const intern = new Engineer(name, id, email, role, school);
+            const intern = new Intern(name, id, email, role, school);
             employeeArr.push(intern);
         })
         .then( () => {
@@ -175,3 +180,18 @@ const internPrompt = (data) => {
         });
 };
 
+const writeHTML = () => {
+    const pageHTML = generateHTML(employeeArr);
+
+    fs.writeFile('./dist/index.html', pageHTML, err => {
+        if (err) throw new Error(err);
+        console.log('Your team page has been created in the dist folder!');
+    });
+
+    fs.copyFile('./src/style.css', './dist/style.css', err => {
+        if (err) throw new Error(err);
+        console.log('Style sheet copied to dist folder');
+    })
+};
+
+launchApp()
